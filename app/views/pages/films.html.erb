@@ -1,0 +1,90 @@
+<h2 class=" mt-5 text-center">Studio Ghibli Films</h2>
+<div class="container mt-5">
+    <% @films_list.each do | film| %>
+  
+        <div class="card my-3 mx-auto" style="max-width: 800px;">
+            <div class="row g-0">
+                <div class="col-md-5 my-auto">
+                    <img src="<%= film.image %>" class="img-fluid rounded" alt="...">
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= film.title %></h5>
+                        <div class="d-flex flex-row">
+                            <h6 class="card-title my-auto">Original Title:</h6>
+                            <p class="card-text my-auto ms-2"><%= film.original_title_romanised %></p>
+                            <p class="card-text my-auto ms-2"><%= film.original_title %></p>
+                        </div>
+                        <p class="card-text my-2"><%= film.description %></p>
+                        <div class="d-flex flex-wrap">
+                            <h6 class="card-title my-auto">Characters: <% film.id %></h6>
+                            <% @film_characters.each do | character |%>
+                            
+                                <% if character.films.include?  film.url %>
+
+                                    <p class="card-text my-auto ms-2">
+                                        <%= character.name %>
+                                    </p>
+
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <h6 class="card-title my-auto">Director:</h6>
+                            <p class="card-text my-auto ms-2"><%= film.director %></p>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <h6 class="card-title my-auto">Producer:</h6>
+                            <p class="card-text my-auto ms-2"><%= film.producer %></p>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <h6 class="card-title my-auto">Species: <% film.id %></h6>
+                            <% @species_list.each do | species |%>
+                            
+                                <% if species.films.include?  film.url %>
+
+                                    <p class="card-text my-auto ms-2">
+                                        <%= species.name %>
+                                    </p>
+
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <h6 class="card-title my-auto">Locations: <% film.id %></h6>
+                          
+                            <% @locations_list.each do | location |%>
+                                
+                                <% if location.name.include?  film.url %>
+
+                                    <p class="card-text my-auto ms-2">
+                                        <%= location.name %>
+                                    </p>
+
+                                <% end %>
+                            <% end %>
+                      
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <h6 class="card-title my-auto">Vehicles: <% film.id %></h6>
+                           
+                            <% @vehicles_list.each do | vehicle |%>
+                                
+                                <% if vehicle.films.include?  film.url %>
+
+                                    <p class="card-text my-auto ms-2">
+                                        <%= vehicle.name %>
+                                    </p>
+
+                                <% end %>
+                            <% end %>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="badge bg-dark rounded-pill position-absolute top-0 end-0 mx-3 my-3"><%= film.release_date %></span>
+        </div>
+
+    <% end %>
+</div>
